@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serilog.Sinks.BepInEx", "Serilog.Sinks.BepInEx\Serilog.Sinks.BepInEx.csproj", "{2FD7CF78-5D3C-4ECC-A452-1C25F96A651B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serilog.Sinks.BepInEx.Tests", "Serilog.Sinks.BepInEx.Tests\Serilog.Sinks.BepInEx.Tests.csproj", "{BDD2020E-CE62-4335-9045-E6D3BA85FA9B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2FD7CF78-5D3C-4ECC-A452-1C25F96A651B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FD7CF78-5D3C-4ECC-A452-1C25F96A651B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FD7CF78-5D3C-4ECC-A452-1C25F96A651B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FD7CF78-5D3C-4ECC-A452-1C25F96A651B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDD2020E-CE62-4335-9045-E6D3BA85FA9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDD2020E-CE62-4335-9045-E6D3BA85FA9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDD2020E-CE62-4335-9045-E6D3BA85FA9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDD2020E-CE62-4335-9045-E6D3BA85FA9B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
