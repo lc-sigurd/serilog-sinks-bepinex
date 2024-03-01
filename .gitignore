@@ -45,6 +45,11 @@
 /Serilog.Sinks.BepInEx.Tests/[Bb]in
 /Serilog.Sinks.BepInEx.Tests/[Oo]bj
 
+### Build Project
+!/Build
+/Build/[Bb]in
+/Build/[Oo]bj
+
 # Explicit exceptions/ignores
 **.user
 !**.template.*.user
