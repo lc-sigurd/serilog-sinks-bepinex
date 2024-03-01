@@ -7,7 +7,7 @@
         <Description>This package provides a Serilog sink that redirects events to a BepInEx `ManualLogSource.`</Description>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <RootNamespace>Serilog</RootNamespace>
-        <PackageIcon>logo.png</PackageIcon>
+        <PackageIcon>icon.png</PackageIcon>
         <PackageIconUrl>https://serilog.net/images/serilog-sink-nuget.png</PackageIconUrl>
         <IsPackable>true</IsPackable>
     </PropertyGroup>
