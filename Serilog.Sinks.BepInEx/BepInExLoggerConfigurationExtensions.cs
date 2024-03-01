@@ -43,7 +43,7 @@ public static class BepInExLoggerConfigurationExtensions
     /// <returns>Configuration object allowing method chaining.</returns>
     /// <remarks>Because this sink redirects messages to another logging system,
     /// it is recommended to allow all event levels to pass through.</remarks>
-    public static LoggerConfiguration BepInExManualLogSource(
+    public static LoggerConfiguration BepInExLogger(
         this LoggerSinkConfiguration sinkConfiguration,
         string logSourceName,
         string outputTemplate = DefaultBepInExConsoleOutputTemplate,
