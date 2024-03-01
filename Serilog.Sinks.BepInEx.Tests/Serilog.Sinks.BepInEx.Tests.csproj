@@ -18,4 +18,8 @@
         <Using Include="Xunit"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="$(ProjectDir)../Serilog.Sinks.BepInEx/Serilog.Sinks.BepInEx.csproj" />
+    </ItemGroup>
+
 </Project>
