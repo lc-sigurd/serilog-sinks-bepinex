@@ -29,7 +29,8 @@ jobs:
 
       - name: Build and pack solution
         run: |
-          dotnet pack -c Release
+          dotnet build -c Release
+          dotnet pack -c Release --no-build
 
       - name: Upload thunderstore artifact
         uses: actions/upload-artifact@v4
