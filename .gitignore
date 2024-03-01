@@ -29,6 +29,9 @@
 ## GitHub specific
 !.github/
 
+## Assets
+!/assets
+
 ## Libraries
 !/libs
 
