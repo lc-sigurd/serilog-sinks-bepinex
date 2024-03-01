@@ -31,10 +31,10 @@ public static class BepInExLoggerConfigurationExtensions
     private const string DefaultBepInExConsoleOutputTemplate = "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}";
 
     /// <summary>
-    /// Redirects log events to a BepInEx <see cref="ManualLogSource"/>.
+    /// Redirects log events to the BepInEx logger via an <see cref="ILogSource"/>.
     /// </summary>
     /// <param name="sinkConfiguration">Logger sink configuration.</param>
-    /// <param name="logSourceName">The BepInEx <see cref="ILogSource.SourceName"/> to log events to.</param>
+    /// <param name="logSourceName">A <see cref="ILogSource.SourceName"/> to use for the created <see cref="ILogSource"/>.</param>
     /// <param name="outputTemplate">A message template describing the format used to write to the sink.
     /// If not specified, uses <see cref="DefaultBepInExConsoleOutputTemplate"/>.</param>
     /// <param name="formatProvider">Supplies culture-specific formatting information. Can be <see langword="null"/>.</param>
