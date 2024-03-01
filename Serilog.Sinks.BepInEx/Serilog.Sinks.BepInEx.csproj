@@ -9,6 +9,7 @@
         <RootNamespace>Serilog</RootNamespace>
         <PackageIcon>logo.png</PackageIcon>
         <PackageIconUrl>https://serilog.net/images/serilog-sink-nuget.png</PackageIconUrl>
+        <IsPackable>true</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>
