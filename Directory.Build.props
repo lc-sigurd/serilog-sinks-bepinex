@@ -75,7 +75,7 @@
     </PropertyGroup>
 
     <!-- Import local user props -->
-    <Import Project="$(SolutionDir)serilog-sinks-bepienx.props.user" Condition="$(CI) != 'true'"/>
+    <Import Project="$(SolutionDir)serilog-sinks-bepinex.props.user" Condition="$(CI) != 'true'"/>
 
     <!-- Dummy target to execute 'initially' -->
     <Target Name="InitializeProps" />
