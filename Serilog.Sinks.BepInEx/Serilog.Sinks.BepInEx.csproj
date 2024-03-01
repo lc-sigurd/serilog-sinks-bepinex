@@ -2,6 +2,26 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
+        <Title>Serilog sink for BepInEx</Title>
+        <PackageTags>serilog;logging;bepinex</PackageTags>
+        <Description>This package provides a Serilog sink that redirects events to a BepInEx `ManualLogSource.`</Description>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <RootNamespace>Serilog</RootNamespace>
+        <PackageIcon>logo.png</PackageIcon>
+        <PackageIconUrl>https://serilog.net/images/serilog-sink-nuget.png</PackageIconUrl>
     </PropertyGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="$(ProjectName).Tests" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="PolySharp" Version="1.14.1" PrivateAssets="all" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Serilog" Version="3.1.1" />
+        <PackageReference Include="BepInEx.Core" Version="5.4.21" />
+    </ItemGroup>
 
 </Project>
