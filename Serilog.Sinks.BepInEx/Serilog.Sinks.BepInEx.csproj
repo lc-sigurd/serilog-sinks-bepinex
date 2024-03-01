@@ -4,7 +4,7 @@
         <TargetFramework>netstandard2.1</TargetFramework>
         <Title>Serilog sink for BepInEx</Title>
         <PackageTags>serilog;logging;bepinex</PackageTags>
-        <Description>This package provides a Serilog sink that redirects events to a BepInEx `ManualLogSource.`</Description>
+        <Description>This package provides a Serilog sink that redirects events to the BepInEx Logger via an `ILogSource.`</Description>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <RootNamespace>Serilog</RootNamespace>
         <PackageIcon>icon.png</PackageIcon>
