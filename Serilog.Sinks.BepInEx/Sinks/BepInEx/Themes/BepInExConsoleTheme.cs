@@ -39,7 +39,7 @@ public abstract class BepInExConsoleTheme
     public abstract int Set(BepInExLogContext context, TextWriter output, BepInExConsoleThemeStyle style);
 
     /// <summary>
-    /// Reset the output to default MSBuild colours for the context.
+    /// Reset the output to default BepInEx colours for the context.
     /// </summary>
     /// <param name="context">Output <see cref="BepInExLogContext"/>.</param>
     /// <param name="output">Output destination.</param>
