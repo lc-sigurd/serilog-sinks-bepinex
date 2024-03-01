@@ -1,7 +1,38 @@
-﻿<Project Sdk="Microsoft.Build.NoTargets">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>netstandard2.1</TargetFramework>
+
+        <IsThunderstorePackable>true</IsThunderstorePackable>
+        <ThunderstoreName>Serilog_Pack</ThunderstoreName>
+        <ThunderstoreDescription>Everything you need to log seriously from the BepInEx framework!</ThunderstoreDescription>
+        <ThunderstoreIconPath>$(ProjectDir)../assets/icons/icon.png</ThunderstoreIconPath>
     </PropertyGroup>
+
+    <ItemGroup>
+        <PreThunderstoreGenTargetName Include="AddDependencyAssemblyCopyPaths" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="$(ProjectDir)../Serilog.Sinks.BepInEx/Serilog.Sinks.BepInEx.csproj" />
+    </ItemGroup>
+
+    <Target Name="AddDependencyAssemblyCopyPaths">
+        <ItemGroup>
+            <IncludeInThunderstorePackageDependencyAssemblyName Include="Serilog.Sinks.BepInEx"/>
+            <IncludeInThunderstorePackageDependencyAssemblyName Include="Serilog"/>
+        </ItemGroup>
+
+        <ItemGroup>
+            <IncludeInThunderstorePackageDependencyAssemblyPath Include="@(ReferencePathWithRefAssemblies)">
+                <CompareName>%(IncludeInThunderstorePackageDependencyAssemblyName.Identity)</CompareName>
+            </IncludeInThunderstorePackageDependencyAssemblyPath>
+            <IncludeInThunderstorePackageDependencyAssemblyPath Remove="@(IncludeInThunderstorePackageDependencyAssemblyPath)" Condition="%(FileName) != %(CompareName)"/>
+        </ItemGroup>
+
+        <ItemGroup>
+            <ThunderstoreBuildCopyPath Include="@(IncludeInThunderstorePackageDependencyAssemblyPath)" Destination="BepInEx/core/Serilog-Pack/" />
+        </ItemGroup>
+    </Target>
 
 </Project>
