@@ -18,6 +18,7 @@ using Serilog.Core;
 using Serilog.Events;
 using Serilog.Sinks.BepInEx.Formatting;
 using Serilog.Sinks.BepInEx.Themes;
+using BepInExLogger = BepInEx.Logging.Logger;
 
 namespace Serilog.Sinks.BepInEx;
 
@@ -25,7 +26,7 @@ namespace Serilog.Sinks.BepInEx;
 /// A <see cref="Serilog"/> sink that redirects <see cref="LogEvent"/>s to a BepInEx <see cref="ManualLogSource"/>
 /// instance.
 /// </summary>
-public class BepInExLogSink : ILogEventSink
+public class BepInExLogSink : ILogEventSink, IDisposable
 {
     const int DefaultWriteBufferCapacity = 256;
 
@@ -45,6 +46,8 @@ public class BepInExLogSink : ILogEventSink
         _logSource = logSource ?? throw new ArgumentNullException(nameof(logSource));
         _theme = theme ?? throw new ArgumentNullException(nameof(theme));
         _formatter = formatter ?? throw new ArgumentNullException(nameof(formatter));
+
+        BepInExLogger.Sources.Add(_logSource);
     }
 
     /// <inheritdoc cref="ILogEventSink.Emit"/>
@@ -60,5 +63,11 @@ public class BepInExLogSink : ILogEventSink
         var message = buffer.ToString().TrimEnd();
 
         _logSource.Log(context.Level, message);
+    }
+
+    public void Dispose()
+    {
+        BepInExLogger.Sources.Remove(_logSource);
+        _logSource.Dispose();
     }
 }
