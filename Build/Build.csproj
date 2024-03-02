@@ -6,7 +6,7 @@
         <IsThunderstorePackable>true</IsThunderstorePackable>
         <ThunderstoreName>Serilog_Pack</ThunderstoreName>
         <ThunderstoreDescription>Everything you need to log seriously from the BepInEx framework!</ThunderstoreDescription>
-        <ThunderstoreIconPath>$(ProjectDir)../assets/icons/icon.png</ThunderstoreIconPath>
+        <ThunderstoreIconPath>$(ProjectDir)assets/icons/pack-icon.png</ThunderstoreIconPath>
     </PropertyGroup>
 
     <ItemGroup>
