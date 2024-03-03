@@ -56,7 +56,7 @@ public record BepInExLogContext
     }
 
     /// <summary>
-    /// The message's log level..
+    /// The message's log level.
     /// </summary>
     public required LogLevel Level { get; init; }
 }
