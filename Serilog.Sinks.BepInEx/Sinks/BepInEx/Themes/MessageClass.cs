@@ -28,10 +28,16 @@ public sealed class MessageClass : ILogEventEnricher
     public const string PropertyName = nameof(MessageClass);
 
     /// <summary>
+    /// Apply BepInEx's text theme, which depends upon the log level.
+    /// </summary>
+    /// <seealso cref="BepInExConsoleThemeStyle.Text"/>
+    public static MessageClass Default = new MessageClass("Default", BepInExConsoleThemeStyle.BepInExText);
+
+    /// <summary>
     /// Apply the standard text theme.
     /// </summary>
     /// <seealso cref="BepInExConsoleThemeStyle.Text"/>
-    public static MessageClass Default = new MessageClass("Default", BepInExConsoleThemeStyle.Text);
+    public static MessageClass Standard = new MessageClass("Standard", BepInExConsoleThemeStyle.Text);
 
     /// <summary>
     /// Apply a prominently positive 'success' text theme.

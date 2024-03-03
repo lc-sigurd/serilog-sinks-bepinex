@@ -22,6 +22,11 @@ public enum BepInExConsoleThemeStyle
     Text,
 
     /// <summary>
+    /// Prominent text which follows BepInEx's log-level theming convention.
+    /// </summary>
+    BepInExText,
+
+    /// <summary>
     /// Boilerplate text, for example items specified in an output template.
     /// </summary>
     SecondaryText,
