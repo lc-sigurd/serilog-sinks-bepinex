@@ -55,8 +55,7 @@ public static class BepInExLoggerConfigurationExtensions
 
         theme ??= AnsiBepInExConsoleTheme.Literate;
 
-        var formatter = new OutputTemplateRenderer(theme, outputTemplate, formatProvider);
         var logSource = new SerilogLogSource(logSourceName);
-        return sinkConfiguration.Sink(new BepInExLogSink(logSource, theme, formatter));
+        return sinkConfiguration.Sink(new BepInExLogSink(logSource, theme, outputTemplate, formatProvider));
     }
 }

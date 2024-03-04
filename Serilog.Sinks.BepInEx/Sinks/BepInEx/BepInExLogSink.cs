@@ -17,6 +17,7 @@ using BepInEx.Logging;
 using Serilog.Core;
 using Serilog.Events;
 using Serilog.Sinks.BepInEx.Formatting;
+using Serilog.Sinks.BepInEx.Output;
 using Serilog.Sinks.BepInEx.Themes;
 using BepInExLogger = BepInEx.Logging.Logger;
 
@@ -30,6 +31,7 @@ public class BepInExLogSink : ILogEventSink, IDisposable
 {
     const int DefaultWriteBufferCapacity = 256;
 
+    private readonly IBepInExTextFormatter _plainFormatter;
     private readonly IBepInExTextFormatter _formatter;
     private readonly BepInExConsoleTheme _theme;
     private readonly SerilogLogSource _logSource;
@@ -39,13 +41,16 @@ public class BepInExLogSink : ILogEventSink, IDisposable
     /// </summary>
     /// <param name="logSource">The <see cref="ManualLogSource"/> to which log events will be sent.</param>
     /// <param name="theme">The theme to apply to the styled output.</param>
-    /// <param name="formatter">Supplies culture-specific
-    /// formatting information. Can be <see langword="null"/>.</param>
-    public BepInExLogSink(SerilogLogSource logSource, BepInExConsoleTheme theme, IBepInExTextFormatter formatter)
+    /// <param name="outputTemplate">Supplies the message template used for rendering.</param>
+    /// <param name="formatProvider">Supplies culture-specific formatting information. Can be <see langword="null"/>.</param>
+    public BepInExLogSink(SerilogLogSource logSource, BepInExConsoleTheme theme, string outputTemplate, IFormatProvider? formatProvider)
     {
         _logSource = logSource ?? throw new ArgumentNullException(nameof(logSource));
         _theme = theme ?? throw new ArgumentNullException(nameof(theme));
-        _formatter = formatter ?? throw new ArgumentNullException(nameof(formatter));
+        if (outputTemplate is null) throw new ArgumentNullException(nameof(outputTemplate));
+
+        _plainFormatter = new OutputTemplateRenderer(BepInExConsoleTheme.None, outputTemplate, formatProvider);
+        _formatter = new OutputTemplateRenderer(theme, outputTemplate, formatProvider);
 
         BepInExLogger.Sources.Add(_logSource);
     }
@@ -58,11 +63,15 @@ public class BepInExLogSink : ILogEventSink, IDisposable
 
         var context = BepInExLogContext.FromLogEvent(logEvent);
 
+        var plainBuffer = new StringWriter(new StringBuilder(DefaultWriteBufferCapacity));
+        _plainFormatter.Format(logEvent, context, plainBuffer);
+        var plainMessage = plainBuffer.ToString().TrimEnd();
+
         var buffer = new StringWriter(new StringBuilder(DefaultWriteBufferCapacity));
         _formatter.Format(logEvent, context, buffer);
         var message = buffer.ToString().TrimEnd();
 
-        _logSource.Log(context.Level, message);
+        _logSource.Log(context.Level, plainMessage, message);
     }
 
     public void Dispose()
