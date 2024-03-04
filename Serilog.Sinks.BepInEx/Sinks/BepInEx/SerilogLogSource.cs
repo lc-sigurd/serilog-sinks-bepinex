@@ -32,6 +32,7 @@ public class SerilogLogSource : ILogSource
     /// Log a message of the specified level.
     /// </summary>
     /// <param name="level"><see cref="LogLevel"/> to log at.</param>
-    /// <param name="message"><see langword="string"/> message.</param>
-    public void Log(LogLevel level, string message) => LogEvent?.Invoke(this, new SerilogLogEventArgs(message, level, this));
+    /// <param name="plainMessage"><see langword="string"/> message.</param>
+    /// <param name="ansiFormattedMessage">ANSI formatted <see langword="string"/> message.</param>
+    public void Log(LogLevel level, string plainMessage, string ansiFormattedMessage) => LogEvent?.Invoke(this, new SerilogLogEventArgs(plainMessage, ansiFormattedMessage, level, this));
 }
