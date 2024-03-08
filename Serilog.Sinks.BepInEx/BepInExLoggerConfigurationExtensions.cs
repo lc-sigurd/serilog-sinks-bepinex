@@ -14,7 +14,6 @@ using BepInEx.Logging;
 using Serilog.Events;
 using Serilog.Configuration;
 using Serilog.Sinks.BepInEx;
-using Serilog.Sinks.BepInEx.Output;
 using Serilog.Sinks.BepInEx.Themes;
 
 namespace Serilog;
