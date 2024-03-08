@@ -20,7 +20,7 @@ class SourceNameRenderer : OutputTemplateTokenRenderer
     public override void Render(LogEvent logEvent, BepInExLogContext context, TextWriter output)
     {
         var _ = 0;
-        using (_theme.Apply(context, output, BepInExConsoleThemeStyle.Text, ref _))
+        using (_theme.Apply(context, output, BepInExConsoleThemeStyle.SecondaryText, ref _))
         {
             Padding.Apply(output, context.SourceName, _sourceNameToken.Alignment);
         }
