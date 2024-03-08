@@ -25,7 +25,7 @@
         <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
         <RepositoryUrl>https://github.com/lc-sigurd/serilog-sinks-bepinex</RepositoryUrl>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
-        <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
+        <PackageProjectUrl>https://thunderstore.io/c/lethal-company/p/Sigurd/Serilog_Pack/</PackageProjectUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
