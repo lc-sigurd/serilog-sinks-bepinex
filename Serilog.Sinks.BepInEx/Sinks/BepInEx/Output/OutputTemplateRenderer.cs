@@ -17,6 +17,7 @@ using Serilog.Formatting.Display;
 using Serilog.Parsing;
 using Serilog.Sinks.BepInEx.Formatting;
 using Serilog.Sinks.BepInEx.Themes;
+using BepInExOutputProperties = Serilog.Sinks.BepInEx.Formatting.Display.OutputProperties;
 
 namespace Serilog.Sinks.BepInEx.Output;
 
@@ -42,6 +43,9 @@ class OutputTemplateRenderer : IBepInExTextFormatter
             if (pt.PropertyName == OutputProperties.LevelPropertyName)
             {
                 renderers.Add(new LevelTokenRenderer(theme, pt));
+            }
+            else if (pt.PropertyName == BepInExOutputProperties.SourceNamePropertyName) {
+                renderers.Add(new SourceNameRenderer(theme, pt));
             }
             else if (pt.PropertyName == OutputProperties.NewLinePropertyName)
             {
