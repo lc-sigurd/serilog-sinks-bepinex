@@ -61,7 +61,7 @@ public class BepInExLogSink : ILogEventSink, IDisposable
         if (!_theme.CanBuffer)
             throw new NotSupportedException("BepInEx log themes must support buffering.");
 
-        var context = BepInExLogContext.FromLogEvent(logEvent);
+        var context = BepInExLogContext.FromLogEvent(logEvent, _logSource.SourceName);
 
         var plainBuffer = new StringWriter(new StringBuilder(DefaultWriteBufferCapacity));
         _plainFormatter.Format(logEvent, context, plainBuffer);

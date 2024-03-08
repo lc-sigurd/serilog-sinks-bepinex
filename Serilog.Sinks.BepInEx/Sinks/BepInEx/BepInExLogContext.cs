@@ -27,13 +27,15 @@ public record BepInExLogContext
     /// Populate an <see cref="BepInExLogContext"/> using a SeriLog <see cref="LogEvent"/>.
     /// </summary>
     /// <param name="logEvent">The <see cref="LogEvent"/> used to lookup contextual information.</param>
+    /// <param name="sourceName">The source name of the </param>
     /// <returns><see cref="BepInExLogContext"/> populated as much as possible.</returns>
-    public static BepInExLogContext FromLogEvent(LogEvent logEvent)
+    public static BepInExLogContext FromLogEvent(LogEvent logEvent, string sourceName)
     {
         var level = logEvent.Level.ToBepInExLevel();
 
         return new BepInExLogContext {
             Level = level,
+            SourceName = sourceName,
         };
 
         object? GetScalarValue(string key)
@@ -59,4 +61,9 @@ public record BepInExLogContext
     /// The message's log level.
     /// </summary>
     public required LogLevel Level { get; init; }
+
+    /// <summary>
+    /// The log sink's source name.
+    /// </summary>
+    public required string SourceName { get; init; }
 }
