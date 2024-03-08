@@ -28,7 +28,7 @@ public static class BepInExLoggerConfigurationExtensions
     /// <summary>
     /// <code>"[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}"</code>
     /// </summary>
-    private const string DefaultBepInExConsoleOutputTemplate = "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}";
+    private const string DefaultBepInExConsoleOutputTemplate = "[{Timestamp:HH:mm:ss}] [{SourceName}/{Level:u3}] {Message:lj}{NewLine}{Exception}";
 
     /// <summary>
     /// Redirects log events to the BepInEx logger via an <see cref="ILogSource"/>.
