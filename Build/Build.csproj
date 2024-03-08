@@ -10,6 +10,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ThunderstoreDependency Include="dotnet_lethal_company-Serilog" Version="3.1.100" Reference="false" />
         <PreThunderstoreGenTargetName Include="AddDependencyAssemblyCopyPaths" />
     </ItemGroup>
 
@@ -20,12 +21,6 @@
     <Target Name="AddDependencyAssemblyCopyPaths">
         <ItemGroup>
             <IncludeInThunderstorePackageDependencyAssemblyName Include="Serilog.Sinks.BepInEx" />
-            <IncludeInThunderstorePackageDependencyAssemblyName Include="Serilog" />
-            <IncludeInThunderstorePackageDependencyAssemblyName Include="System.Diagnostics.DiagnosticSource" />
-            <IncludeInThunderstorePackageDependencyAssemblyName Include="System.Runtime.CompilerServices.Unsafe" />
-            <IncludeInThunderstorePackageDependencyAssemblyName Include="System.Memory" />
-            <IncludeInThunderstorePackageDependencyAssemblyName Include="System.Buffers" />
-            <IncludeInThunderstorePackageDependencyAssemblyName Include="System.Numerics.Vectors" />
         </ItemGroup>
 
         <ItemGroup>
