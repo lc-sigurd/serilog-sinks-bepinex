@@ -3,12 +3,9 @@
  * The Sigurd Team licenses this file to you under the LGPL-3.0-OR-LATER license.
  */
 
-using System.Runtime.CompilerServices;
 using BepInEx.Logging;
 using Sigurd.AvaloniaBepInExConsole.Common;
 using LogEventArgs = BepInEx.Logging.LogEventArgs;
-
-[assembly:TypeForwardedTo(typeof(IAnsiFormattable))]
 
 namespace Serilog.Sinks.BepInEx;
 
