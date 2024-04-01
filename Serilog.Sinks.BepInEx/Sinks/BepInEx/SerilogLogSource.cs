@@ -4,6 +4,8 @@
  */
 
 using System;
+using System.Reflection;
+using System.Reflection.Emit;
 using BepInEx.Logging;
 
 namespace Serilog.Sinks.BepInEx;
@@ -17,6 +19,27 @@ public class SerilogLogSource : ILogSource
     public SerilogLogSource(string sourceName)
     {
         SourceName = sourceName;
+    }
+
+    static SerilogLogSource()
+    {
+        var avaloniaBepinexConsoleCommonAssemblyNameString = "com.sigurd.avalonia_bepinex_console.common";
+        var avaloniaBepinexConsoleCommonAssemblyName = new AssemblyName(avaloniaBepinexConsoleCommonAssemblyNameString);
+
+        var assemblyHolder = new Lazy<Assembly>(() => {
+            var assembly = AssemblyBuilder.DefineDynamicAssembly(avaloniaBepinexConsoleCommonAssemblyName, AssemblyBuilderAccess.Run);
+            var module = assembly.DefineDynamicModule(avaloniaBepinexConsoleCommonAssemblyName.Name);
+
+            var iAnsiFormattableTypeBuilder = module.DefineType("Sigurd.AvaloniaBepInExConsole.Common.IAnsiFormattable", TypeAttributes.Interface | TypeAttributes.Abstract | TypeAttributes.Public);
+            iAnsiFormattableTypeBuilder.CreateType();
+            return assembly;
+        });
+
+        AppDomain.CurrentDomain.AssemblyResolve += (_, args) => {
+            var assemblyName = new AssemblyName(args.Name);
+            if (assemblyName.Name != avaloniaBepinexConsoleCommonAssemblyName.Name) return null;
+            return assemblyHolder.Value;
+        };
     }
 
     /// <inheritdoc />
