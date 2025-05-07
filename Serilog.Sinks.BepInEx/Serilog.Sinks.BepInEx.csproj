@@ -21,13 +21,13 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Serilog" Version="3.1.1" />
+        <PackageReference Include="Serilog" Version="4.2.0" />
         <PackageReference Include="BepInEx.Core" Version="5.4.21" />
         <Reference Include="com.sigurd.avalonia_bepinex_console.common">
             <HintPath>$(ProjectDir)../libs/avalonia-bepinex-console/com.sigurd.avalonia_bepinex_console.common.dll</HintPath>
         </Reference>
     </ItemGroup>
-    
+
     <ItemGroup>
         <None Include="$(ProjectDir)assets/icons/sink-icon.png" Pack="true" PackagePath="/icon.png"/>
     </ItemGroup>
