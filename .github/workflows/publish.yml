@@ -82,8 +82,14 @@ jobs:
         run: |
           dotnet tool restore
 
-      - name: Publish to Thunderstore
+      - name: Publish to Thunderstore (REPO)
+        env:
+          TCLI_AUTH_TOKEN: ${{ secrets.REPO_THUNDERSTORE_API_TOKEN }}
+        run: |
+          dotnet build Build/repo -c Release -target:ThunderstorePublish
+
+      - name: Publish to Thunderstore (Lethal Company)
         env:
           TCLI_AUTH_TOKEN: ${{ secrets.THUNDERSTORE_API_TOKEN }}
         run: |
-          dotnet build -c Release -target:ThunderstorePublish
+          dotnet build Build/lethal-company -c Release -target:ThunderstorePublish
