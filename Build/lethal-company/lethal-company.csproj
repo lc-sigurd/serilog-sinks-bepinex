@@ -8,7 +8,7 @@
 
     <ItemGroup>
         <ThunderstorePublishCommunity Include="lethal-company" CategorySlugs="misc"/>
-        <ThunderstoreDependency Include="dotnet_lethal_company-Serilog" Version="3.1.100" Reference="false" />
+        <ThunderstoreDependency Include="dotnet_lethal_company-Serilog" Version="4.2.0" Reference="false" />
     </ItemGroup>
 
 </Project>
