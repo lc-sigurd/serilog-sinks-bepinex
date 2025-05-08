@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="$(MSBuildThisFileDirectory)../base.props" />
+
+    <PropertyGroup>
+        <ThunderstoreNamespace>Sigurd_REPO</ThunderstoreNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ThunderstorePublishCommunity Include="repo" CategorySlugs="misc"/>
+        <ThunderstoreDependency Include="dotnet_repo-Serilog" Version="4.2.0" Reference="false" />
+    </ItemGroup>
+
+</Project>

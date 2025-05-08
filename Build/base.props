@@ -1,0 +1,48 @@
+﻿<Project>
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <ThunderstoreNamespace>UNSET</ThunderstoreNamespace>
+        <IsThunderstorePackable>true</IsThunderstorePackable>
+        <ThunderstoreName>Serilog_Pack</ThunderstoreName>
+        <ThunderstoreDescription>Everything you need to log seriously from the BepInEx framework!</ThunderstoreDescription>
+        <ThunderstoreIconPath>$(MSBuildThisFileDirectory)assets/icons/pack-icon.png</ThunderstoreIconPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ThunderstoreBuildCopyPath Include="$(MSBuildThisFileDirectory)../CHANGELOG.md" Destination="/"/>
+        <ThunderstoreBuildCopyPath Include="$(MSBuildThisFileDirectory)../LICENSE" Destination="/"/>
+        <ThunderstoreDependency Include="BepInEx-BepInExPack" Version="5.4.2100" Reference="false" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PreThunderstoreGenTargetName Include="AddDependencyAssemblyCopyPaths" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="$(MSBuildThisFileDirectory)../Serilog.Sinks.BepInEx/Serilog.Sinks.BepInEx.csproj" />
+    </ItemGroup>
+
+    <Target Name="AddDependencyAssemblyCopyPaths">
+        <ItemGroup>
+            <IncludeProjectReferencedAssemblyInThunderstorePackage Include="Serilog.Sinks.BepInEx" />
+        </ItemGroup>
+
+        <!-- ProjectReference assemblies -->
+        <JoinItems
+            Left="@(ReferencePath)"
+            LeftKey="FileName"
+            LeftMetadata="*"
+            Right="@(IncludeProjectReferencedAssemblyInThunderstorePackage)"
+            RightKey="Identity"
+            ItemSpecToUse="Left"
+        >
+            <Output TaskParameter="JoinResult" ItemName="IncludeAssemblyPathInThunderstorePackage" />
+        </JoinItems>
+
+        <ItemGroup>
+            <ThunderstoreBuildCopyPath Include="@(IncludeAssemblyPathInThunderstorePackage)" Destination="BepInEx/core/Serilog-Pack/" />
+        </ItemGroup>
+    </Target>
+
+</Project>

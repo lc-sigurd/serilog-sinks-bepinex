@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="$(MSBuildThisFileDirectory)../base.props" />
+
+    <PropertyGroup>
+        <ThunderstoreNamespace>Sigurd</ThunderstoreNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ThunderstorePublishCommunity Include="lethal-company" CategorySlugs="misc"/>
+        <ThunderstoreDependency Include="dotnet_lethal_company-Serilog" Version="3.1.100" Reference="false" />
+    </ItemGroup>
+
+</Project>

@@ -50,8 +50,8 @@
 
 ### Build Project
 !/Build
-/Build/[Bb]in
-/Build/[Oo]bj
+/Build/*/[Bb]in
+/Build/*/[Oo]bj
 
 # Explicit exceptions/ignores
 **.user
