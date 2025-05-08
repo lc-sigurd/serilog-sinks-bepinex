@@ -4,47 +4,15 @@ on:
   release:
     types: [prereleased, released]
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Fetch Sources
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.release.tag_name }}
-          fetch-depth: 0
-          filter: tree:0
-          submodules: recursive
-
-      - name: Setup .NET environment
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: "8.0.*"
-
-      - name: Restore solution
-        run: |
-          dotnet restore
-          dotnet tool restore
-
-      - name: Build and pack solution
-        run: |
-          dotnet build -c Release
-          dotnet pack -c Release --no-build
-
-      - name: Upload thunderstore artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: thunderstore-build
-          path: |
-            ./*/assets/thunderstore.toml.user
-            ./*/bin/Release/*/dist/*.zip
-
-      - name: Upload nupkg artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: nupkg-build
-          path: ./*/bin/Release/*.nupkg
+    uses: './.github/workflows/build.yml'
+    with:
+      ref: ${{ github.event.release.tag_name }}
 
   upload-release-artifacts:
     name: Upload Release Artifacts
@@ -60,10 +28,16 @@ jobs:
       - name: Upload artifacts to Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload ${{ github.event.release.tag_name }} thunderstore-build/*/bin/Release/*/dist/*.zip nupkg-build/*/bin/Release/*.nupkg
+        run: |
+          FIND_ASSETS_COMMAND=( find . -type f '(' -false
+            -o -path "./thunderstore-build/*/bin/Release/netstandard2.1/dist/*.zip"
+            -o -path "./nupkg-build/*/bin/Release/*.nupkg"
+          ')' )
+          "${FIND_ASSETS_COMMAND[@]}" -print0 | xargs -0 gh release upload ${{ github.event.release.tag_name }}
 
   deploy-nuget:
     name: Deploy to NuGet
+    if: ${{ vars.NUGET_PACKAGE == 'true' }}
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -78,11 +52,13 @@ jobs:
       - name: Setup .NET environment
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.0.100"
+          dotnet-version: "9.0.104"
 
       - name: Publish to NuGet.org
         run: |
-          dotnet nuget push ./*/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_TOKEN }} --source https://api.nuget.org/v3/index.json
+          dotnet nuget push ./*/bin/Release/*.nupkg \
+            --api-key ${{ secrets.NUGET_API_TOKEN }} \
+            --source https://api.nuget.org/v3/index.json
 
   deploy-thunderstore:
     name: Deploy to Thunderstore
@@ -100,7 +76,7 @@ jobs:
       - name: Setup .NET environment
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.0.100"
+          dotnet-version: "9.0.104"
 
       - name: Restore dotnet tools
         run: |
