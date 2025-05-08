@@ -72,6 +72,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: thunderstore-build
+          path: Build
 
       - name: Setup .NET environment
         uses: actions/setup-dotnet@v4
